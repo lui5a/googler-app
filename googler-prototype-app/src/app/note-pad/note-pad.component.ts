@@ -1,3 +1,4 @@
+import { DataSource } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -5,6 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Observable, ReplaySubject } from 'rxjs';
 
 export interface allNotes {
   title: string,
@@ -34,12 +36,14 @@ export class NotePadComponent implements OnInit {
   };
 
   displayedColumns: string[] = ['title', 'description'];
-  dataSource = ELEMENT_DATA;
+  dataToDisplay = [...ELEMENT_DATA];
+
+  dataSource = new ExampleDataSource(this.dataToDisplay);
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.dataSource = [];
+    this.dataToDisplay =[];
     this.setValues();
   }
 
@@ -55,8 +59,26 @@ export class NotePadComponent implements OnInit {
       title: this.noteForm.get('title')?.value,
       description: this.noteForm.get('title')?.value,
     }
-    this.dataSource = [];
-    this.dataSource.push(this.newNote);
-    console.log(this.dataSource)
+    this.dataToDisplay.push(this.newNote);
+    this.dataSource.setData(this.dataToDisplay);
+    console.log(this.dataToDisplay)
+  }
+}
+class ExampleDataSource extends DataSource<allNotes> {
+  private _dataStream = new ReplaySubject<allNotes[]>();
+
+  constructor(initialData: allNotes[]) {
+    super();
+    this.setData(initialData);
+  }
+
+  connect(): Observable<allNotes[]> {
+    return this._dataStream;
+  }
+
+  disconnect() {}
+
+  setData(data: allNotes[]) {
+    this._dataStream.next(data);
   }
 }
