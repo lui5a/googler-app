@@ -20,7 +20,11 @@ import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { LoginGuard } from './login.guard';
 import { ChoosePathComponent } from './choose-path/choose-path.component';
-
+import { NotePadComponent } from './note-pad/note-pad.component';
+import { NoteLibraryComponent } from './note-library/note-library.component';
+import { AddTagComponent } from './add-tag/add-tag.component';
+import { NoteEditorComponent } from './note-editor/note-editor.component';
+import {MatTableModule} from '@angular/material/table';
 
 
 
@@ -31,6 +35,10 @@ import { ChoosePathComponent } from './choose-path/choose-path.component';
     RegisterComponent,
     DashboardComponent,
     ChoosePathComponent,
+    NotePadComponent,
+    NoteLibraryComponent,
+    AddTagComponent,
+    NoteEditorComponent,
 
   ],
   imports: [
@@ -43,7 +51,8 @@ import { ChoosePathComponent } from './choose-path/choose-path.component';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTableModule
 
   ],
   providers: [LoginGuard],
