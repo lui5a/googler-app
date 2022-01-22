@@ -19,6 +19,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { LoginGuard } from './login.guard';
+import { ChoosePathComponent } from './choose-path/choose-path.component';
 
 
 
@@ -29,6 +30,7 @@ import { LoginGuard } from './login.guard';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
+    ChoosePathComponent,
 
   ],
   imports: [
