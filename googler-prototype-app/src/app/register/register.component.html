@@ -1,0 +1,35 @@
+<p>
+  <mat-toolbar>
+    <span>Googler</span>
+  </mat-toolbar>
+</p>
+
+<div class="wrapper">
+  <mat-card class="card">
+    <form [formGroup]="registrationForm" class="example-form">
+      <div>
+        <mat-form-field class="optional-wrapper">
+          <input matInput formControlName="email" placeholder="Email">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="optional-wrapper">
+          <input matInput formControlName="userName" placeholder="Set your user">
+        </mat-form-field>
+      </div>
+      <div>
+
+        <mat-form-field class="optional-wrapper">
+          <input matInput formControlName="password" placeholder="Set your password">
+        </mat-form-field>
+      </div>
+    </form>
+    <mat-card-actions>
+
+      <button mat-flat-button color="primary"
+      [disabled]="!registrationForm.valid" (click)="register()">
+        Register
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
