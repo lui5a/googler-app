@@ -1,27 +1,25 @@
-<p>note-pad works!</p>
 <div class="wrapper">
 
-  <mat-card class="card">
-    <form [formGroup]="noteForm" >
+
+    <form [formGroup]="noteForm" class="example-form" >
       <div>
 
-        <mat-form-field >
-          <input matInput formControlName="title" placeholder="User">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input matInput formControlName="title" placeholder="title">
         </mat-form-field>
       </div>
       <div>
 
-        <mat-form-field >
-          <input matInput formControlName="description" placeholder="Password">
+        <mat-form-field class="example-full-width" appearance="fill" >
+          <textarea  matInput formControlName="description" placeholder="write your note"></textarea>
         </mat-form-field>
       </div>
     </form>
-    <mat-card-actions>
+
 
       <button mat-flat-button color="primary"
       [disabled]="!noteForm.valid" >
-      login
+      save note
     </button>
-  </mat-card-actions>
-</mat-card>
+
 </div>
