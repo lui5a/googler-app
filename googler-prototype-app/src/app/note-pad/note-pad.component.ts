@@ -39,7 +39,7 @@ export class NotePadComponent implements OnInit {
   dataToDisplay = [...ELEMENT_DATA];
 
   dataSource = new ExampleDataSource(this.dataToDisplay);
-
+  clickedRows = new Set<allNotes>();
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -59,6 +59,7 @@ export class NotePadComponent implements OnInit {
       title: this.noteForm.get('title')?.value,
       description: this.noteForm.get('title')?.value,
     }
+    this.noteForm.reset()
     this.dataToDisplay.push(this.newNote);
     this.dataSource.setData(this.dataToDisplay);
     console.log(this.dataToDisplay)
