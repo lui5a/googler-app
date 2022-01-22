@@ -24,7 +24,7 @@ import { NotePadComponent } from './note-pad/note-pad.component';
 import { NoteLibraryComponent } from './note-library/note-library.component';
 import { AddTagComponent } from './add-tag/add-tag.component';
 import { NoteEditorComponent } from './note-editor/note-editor.component';
-
+import {MatTableModule} from '@angular/material/table';
 
 
 
@@ -51,7 +51,8 @@ import { NoteEditorComponent } from './note-editor/note-editor.component';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTableModule
 
   ],
   providers: [LoginGuard],

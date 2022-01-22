@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   max-width: 90%;
+  margin:2%
  }
 
  .example-form {
@@ -14,4 +15,8 @@
 
 .example-full-width {
   width: 80vw;
+}
+
+table {
+  width: 100%;
 }
