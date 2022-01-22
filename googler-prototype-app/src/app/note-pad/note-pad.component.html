@@ -47,20 +47,33 @@
       *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <div>
-      <h3>
-        Click Log
-      </h3>
-    </div>
+    <div class="wrapper" *ngIf="clickedRows.size">
 
-    <div *ngIf="!clickedRows.size">
-      Clicked rows will be logged here
-    </div>
+      <h2>Edit note</h2>
 
-    <ul>
-      <li *ngFor="let clickedRow of clickedRows">
-        Clicked on {{clickedRow.title}}
-      </li>
-    </ul>
+      <form [formGroup]="noteEditorForm" class="example-form" >
+        <div>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput formControlName="title" placeholder="title">
+          </mat-form-field>
+        </div>
+        <div>
+
+          <mat-form-field class="example-full-width" appearance="fill" >
+            <textarea  matInput formControlName="description" placeholder="write your note"></textarea>
+          </mat-form-field>
+        </div>
+      </form>
+
+
+        <button mat-flat-button color="primary"
+        [disabled]="!noteEditorForm.valid" (click)="resetNote()" >
+        Reset note
+      </button>
+
+    </div>
 
   </div>
+
+

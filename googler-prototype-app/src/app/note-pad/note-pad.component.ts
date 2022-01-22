@@ -9,30 +9,30 @@ import {
 import { Observable, ReplaySubject } from 'rxjs';
 
 export interface allNotes {
-  title: string,
-  description: string
+  title: string;
+  description: string;
 }
 
-
-const ELEMENT_DATA: allNotes[] = [
-  {title: '',
-  description: ''}
-]
+const ELEMENT_DATA: allNotes[] = [{ title: '', description: '' }];
 @Component({
   selector: 'app-note-pad',
   templateUrl: './note-pad.component.html',
-  styleUrls: ['./note-pad.component.scss']
+  styleUrls: ['./note-pad.component.scss'],
 })
-
 export class NotePadComponent implements OnInit {
   noteForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
   });
 
+  noteEditorForm = new FormGroup({
+    title: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+  });
+
   newNote = {
     title: '',
-    description: ''
+    description: '',
   };
 
   displayedColumns: string[] = ['title', 'description'];
@@ -40,10 +40,10 @@ export class NotePadComponent implements OnInit {
 
   dataSource = new ExampleDataSource(this.dataToDisplay);
   clickedRows = new Set<allNotes>();
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.dataToDisplay =[];
+    this.dataToDisplay = [];
     this.setValues();
   }
 
@@ -54,15 +54,34 @@ export class NotePadComponent implements OnInit {
     });
   }
 
-  saveNote(){
+  saveNote() {
     this.newNote = {
       title: this.noteForm.get('title')?.value,
       description: this.noteForm.get('title')?.value,
-    }
-    this.noteForm.reset()
+    };
+    this.noteForm.reset();
+    this.noteEditorForm.setValue({ title: '', description: '' });
     this.dataToDisplay.push(this.newNote);
     this.dataSource.setData(this.dataToDisplay);
-    console.log(this.dataToDisplay)
+    console.log(this.clickedRows);
+  }
+
+  resetNote() {
+    this.newNote = {
+      title: this.noteEditorForm.get('title')?.value,
+      description: this.noteEditorForm.get('title')?.value,
+    };
+
+    this.clickedRows.forEach( editedNote =>{
+      const noteList = this.dataToDisplay.forEach(originalNote => {
+        if(originalNote.title === editedNote.title){
+          return
+        }
+        console.log(noteList)
+        return noteList;
+      })
+    })
+
   }
 }
 class ExampleDataSource extends DataSource<allNotes> {
